@@ -9,17 +9,22 @@
 </head>
 <body data-vide-bg="{{asset("admin/login/maldives")}}">
 <div class="layer"></div>
-<form>
+<form action="{{route("login")}}" method="post">
+    @csrf
+    @method("post")
     <div class="form-header">
         <img src="{{asset("admin/login/logo.png")}}" alt="logo">
         <h1>Welcome Back !</h1>
-        <h3>Enter your credintials to login</h3>
+        <h3>Enter your credentials to login</h3>
+        @if(\Illuminate\Support\Facades\Session::has("error"))
+            <h3 style="color: red;">{{\Illuminate\Support\Facades\Session::get("error")}}</h3>
+        @endif
     </div>
     <div class="input-container">
-        <input type="email" placeholder="Enter Email">
+        <input type="email" name="email" placeholder="Enter Email">
     </div>
     <div class="input-container">
-        <input type="password" placeholder="Enter Password">
+        <input type="password" name="password" placeholder="Enter Password">
     </div>
     <div class="input-container">
         <input type="submit" value="Login">
@@ -28,7 +33,7 @@
         <a href="#">Forget password ?</a>
     </div>
     <div class="link-container">
-        <a href="#">Create new Account</a>
+        <a href="{{ url('/register') }}">Join Us!</a>
     </div>
 </form>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
