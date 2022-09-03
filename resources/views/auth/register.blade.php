@@ -15,6 +15,12 @@
         <img src="{{asset("admin/login/logo.png")}}" alt="logo">
         <h1>Welcome Back !</h1>
         <h3>Enter your details to Join Us!</h3>
+        @if(\Illuminate\Support\Facades\Session::has("error"))
+            <h3 style="color: red;">{{\Illuminate\Support\Facades\Session::get("error")}}</h3>
+        @endif
+        @if(\Illuminate\Support\Facades\Session::has("success"))
+            <h4 style="color: green;">{{\Illuminate\Support\Facades\Session::get("success")}}</h4>
+        @endif
     </div>
     <div class="content">
         <form action="{{route("register")}}" method="post">

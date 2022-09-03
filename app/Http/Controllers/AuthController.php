@@ -19,8 +19,7 @@ class AuthController extends Controller
 
     public function login(Request $request){
         if(Auth::attempt($request->only("email","password"))){
-
-           print_r("<h1>Login Successfull!!! <a href='logout'>Logout</a></h1>");
+            return redirect("channel-manager-dashboard");
         }else{
             return redirect("login")->withError("Invalid Login Details");
         }
@@ -56,7 +55,7 @@ class AuthController extends Controller
                         $user_business_mapping->business_type_id = $val;
                         $user_business_mapping->save();
                     endforeach;
-                    return redirect("login");
+                    return redirect()->back()->withSuccess('You have been successfully registered.Please wait for admin to activate your account.');
                 }
             }else{
 
