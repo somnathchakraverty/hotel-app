@@ -6,8 +6,9 @@
 						<i></i>
 					</span>
     </button>
-    <div class="collapse navbar-collapse" id="WafiAdminNavbar">
+    <div class="collapse navbar-collapse"  >
         <ul class="navbar-nav">
+            @if(auth()->user()->role_id == 3)
             <li class="nav-item dropdown">
                 <a class="nav-link   " href="{{url("channel-manager-dashboard")}}" id="dashboardsDropdown" role="button"    >
                     <i class="icon-devices_other nav-icon"></i>
@@ -15,6 +16,8 @@
                 </a>
 
             </li>
+
+            @if(getCompanyBusinessTypes(auth()->user()->id,1)[0]->business_opted > 0)
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="appsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <i class="icon-people_outline nav-icon"></i>
@@ -26,6 +29,9 @@
                     </li>
                 </ul>
             </li>
+                @endif
+
+                @if(getCompanyBusinessTypes(auth()->user()->id,2)[0]->business_opted > 0)
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <i class="icon-terrain nav-icon"></i>
@@ -37,6 +43,8 @@
                     </li>
                 </ul>
             </li>
+                @endif
+                @if(getCompanyBusinessTypes(auth()->user()->id,3)[0]->business_opted > 0)
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="formsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <i class="icon-camera nav-icon"></i>
@@ -48,6 +56,8 @@
                     </li>
                 </ul>
             </li>
+                @endif
+                @if(getCompanyBusinessTypes(auth()->user()->id,4)[0]->business_opted > 0)
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="uiElementsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <i class="icon-local_taxi nav-icon"></i>
@@ -59,6 +69,8 @@
                     </li>
                 </ul>
             </li>
+                @endif
+                @if(getCompanyBusinessTypes(auth()->user()->id,5)[0]->business_opted > 0)
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="appsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <i class=" nav-icon icon-flight_takeoff"></i>
@@ -70,6 +82,8 @@
                     </li>
                 </ul>
             </li>
+                @endif
+            @endif
 
         </ul>
     </div>

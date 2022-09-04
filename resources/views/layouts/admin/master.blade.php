@@ -80,7 +80,8 @@
             <ul class="app-actions">
                 <li>
                     <a href="#" id="">
-                        <span class="range-text">{{ date('jS F,l,Y h:i:s A')}}</span>
+                        {{ date('jS F,l,Y')}}&nbsp;   <span class="range-text" id="date-time-span"> {{ date(' h:i:s A')}}</span>
+                      {{--  <span class="range-text" id="date-time-span">{{ date('jS F,l,Y h:i:s A')}}</span>--}}
                         {{-- <i class="icon-chevron-down"></i>--}}
                     </a>
                 </li>
@@ -102,6 +103,31 @@
 
         <!-- Content wrapper start -->
         <div class="content-wrapper">
+            <div class="row gutters" id="error_alert_div" style="display: none;">
+                <div class=" col-sm-12">
+                    <div class="alert-notify danger">
+                        <div class="alert-notify-body">
+                            <span class="type">Error</span>
+                            <div class="alert-notify-title" id="error_alert_message"><img
+                                    src="admin/img/notification-danger.svg" alt=""></div>
+                           {{-- <div class="alert-notify-text">How likely are you to recommend Wafi Dashboard to your
+                                friends?
+                            </div>--}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row gutters" id="success_alert_div" style="display: none;">
+                <div class=" col-sm-12">
+                    <div class="alert-notify success">
+                        <div class="alert-notify-body">
+                            <span class="type">Success</span>
+                            <div class="alert-notify-title" id="success_alert_message"><img src="admin/img/notification-success.svg" alt=""></div>
+                       {{--     <div class="alert-notify-text">How likely are you to recommend Wafi Dashboard to your friends?</div>--}}
+                        </div>
+                    </div>
+                </div>
+            </div>
 
           @yield("content-wrapper")
 
@@ -125,12 +151,49 @@
 <script src="admin/js/jquery.min.js"></script>
 <script src="admin/js/bootstrap.bundle.min.js"></script>
 <script src="admin/js/moment.js"></script>
+<script src="admin/js/main.js"></script>
+<script src="admin/js/utility.js"></script>
+<script>
+    $(document).ready(function(){
+        setInterval(showTime, 1000);
+
+    });
+
+    function showTime() {
+        let time = new Date();
+        let hour = time.getHours();
+        let min = time.getMinutes();
+        let sec = time.getSeconds();
+        am_pm = "AM";
+
+        if (hour > 12) {
+            hour -= 12;
+            am_pm = "PM";
+        }
+        if (hour == 0) {
+            hr = 12;
+            am_pm = "AM";
+        }
+
+        hour = hour < 10 ? "0" + hour : hour;
+        min = min < 10 ? "0" + min : min;
+        sec = sec < 10 ? "0" + sec : sec;
+
+        let currentTime = hour + ":"
+            + min + ":" + sec +" "+ am_pm;
+
+        $("#date-time-span").html(currentTime)
+
+      /*  document.getElementById("clock")
+            .innerHTML = currentTime;*/
+    }
 
 
+</script>
 <!-- **** Vendor Js Files ******** -->
 @yield("vendor-js")
 <!-- Main Js Required -->
-<script src="admin/js/main.js"></script>
+
 
 </body>
 

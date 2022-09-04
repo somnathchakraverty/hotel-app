@@ -1,7 +1,11 @@
 <header class="header">
     <div class="logo-wrapper">
-        <a href="index-2.html" class="logo">
-            <img src="admin/img/logo.png" alt="Wafi Admin Dashboard" />
+        <a href="" class="logo">
+            @if(auth()->user()->company->company_logo)
+                <img id = "profile_pic_id7" src="{{auth()->user()->company->company_logo}}" alt="profile-pic"/>
+            @else
+                Company Logo
+            @endif
         </a>
         <a href="#" class="quick-links-btn" data-toggle="tooltip" data-placement="right" title="" data-original-title="Quick Links">
             <i class="icon-menu1"></i>
@@ -105,18 +109,28 @@
             <li class="dropdown">
                 <a href="#" id="userSettings" class="user-settings" data-toggle="dropdown" aria-haspopup="true">
                     <span class="user-name">{{auth()->user()->company->company_name}}</span>
-                    <span class="avatar">ZF<span class="status busy"></span></span>
+                    <span class="avatar">
+                          @if(auth()->user()->profile_pic)
+                            <img id = "profile_pic_id3" src="{{auth()->user()->profile_pic}}" alt="profile-pic"/>
+                        @else
+                            <img  id = "profile_pic_id4" src="admin/uploads/user-profile-image/dummy-user.png" alt="profile-pic"/>
+                        @endif
+                        {{--<span class="status busy"></span>--}}</span>
                 </a>
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userSettings">
                     <div class="header-profile-actions">
                         <div class="header-user-profile">
                             <div class="header-user">
-                                <img src="admin/img/user.png" alt="Admin Template" />
+                                @if(auth()->user()->profile_pic)
+                                    <img id = "profile_pic_id5" src="{{auth()->user()->profile_pic}}" alt="profile-pic"/>
+                                @else
+                                    <img  id = "profile_pic_id6" src="admin/uploads/user-profile-image/dummy-user.png" alt="profile-pic"/>
+                                @endif
                             </div>
                             <h5>{{auth()->user()->name}}</h5>
                             <p>{{auth()->user()->role->role}}</p>
                         </div>
-                        <a href="user-profile.html"><i class="icon-user1"></i> My Profile</a>
+                       {{-- <a href="user-profile.html"><i class="icon-user1"></i> My Profile</a>--}}
                         <a href="{{url("account-settings")}}"><i class="icon-settings1"></i> Account Settings</a>
                         <a href="{{"logout"}}"><i class="icon-log-out1"></i> Sign Out</a>
                     </div>
