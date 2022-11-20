@@ -15,4 +15,8 @@ class UserController extends Controller
         $businessTypes = BusinessType::getBusinessTypes($user_id);
         return view("pages.admin.account-settings")->with(["title"=>"Account Settings","businessTypes"=>$businessTypes]);
     }
+
+    public function channelList(){
+        return view("pages.admin.channelList")->with(["title"=>"Channel List"]);
+    }
 }

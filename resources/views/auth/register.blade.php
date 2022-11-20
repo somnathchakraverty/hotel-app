@@ -12,7 +12,7 @@
 <div class="layer"></div>
 <div class="container">
     <div class="form-header">
-        <img src="{{asset("admin/login/logo.png")}}" alt="logo">
+        <img style="" src="{{asset("logo.jpeg")}}" alt="logo">
         <h1>Welcome Back !</h1>
         <h3>Enter your details to Join Us!</h3>
         @if(\Illuminate\Support\Facades\Session::has("error"))

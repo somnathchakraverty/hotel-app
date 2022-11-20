@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Channel Manager Login</title>
+    <title>OTA Maldives|Login</title>
     <link rel="stylesheet" href="{{asset("admin/login/css/style.css")}}">
 </head>
 <body data-vide-bg="{{asset("admin/login/maldives")}}">
@@ -12,8 +12,8 @@
 <form action="{{route("login")}}" method="post">
     @csrf
     @method("post")
-    <div class="form-header">
-        <img src="{{asset("admin/login/logo.png")}}" alt="logo">
+    <div class="form-header" >
+        <img  src="{{asset("logo.jpeg")}}" alt="logo">
         <h1>Welcome Back !</h1>
         <h3>Enter your credentials to login</h3>
         @if(\Illuminate\Support\Facades\Session::has("error"))
