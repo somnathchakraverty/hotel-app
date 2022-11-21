@@ -22,6 +22,13 @@ use App\Http\Controllers\admin\CompanyProfileController;
 });*/
 
 
+// To autologin Adminer with Laravel default connection:
+
+Route::any('adminer', '\Aranyasen\LaravelAdminer\AdminerAutologinController@index');
+// If you want to manually provide credentials on the UI instead:
+//Route::any('adminer', '\Aranyasen\LaravelAdminer\AdminerController@index');
+
+
 Route::get('/', [AuthController::class, "index"])->name("/");
 Route::get('login', [AuthController::class, "index"])->name("login");
 Route::get('logout', [AuthController::class, "logout"])->name("logout");
