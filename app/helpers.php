@@ -7,5 +7,9 @@ function getCompanyBusinessTypes($user_id, $businessId)
     }
 }
 
+function getBusinessTypeName($businessId){
+    return \App\Models\BusinessType::find($businessId) ?? null;
+}
+
 
 

@@ -103,9 +103,47 @@
                         <a class="nav-link   " href="{{url("manage-channel")}}" id="manage-channel"
                            role="button">
                             <i class="icon-devices_other nav-icon"></i>
-                            Manage Channels
+                            Manage Channel Partners
                         </a>
 
+                    </li>
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="appsDropdown" role="button"
+                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="icon-devices_other nav-icon"></i>
+                            Country,State And City Masters
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="appsDropdown">
+                            <li>
+                                <a class="dropdown-item" href="">Country Master</a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="">State Master</a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="">City Master</a>
+                            </li>
+
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="appsDropdown" role="button"
+                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="icon-devices_other nav-icon"></i>
+                            Property
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="appsDropdown">
+                            <li>
+                                <a class="dropdown-item" href="">Amenities Master</a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="">Hotel Types Master</a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="">Room Type Master</a>
+                            </li>
+                        </ul>
                     </li>
                 @endif
         </ul>

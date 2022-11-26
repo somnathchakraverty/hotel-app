@@ -11,6 +11,6 @@ class UserBusinessMapping extends Model
     protected $table = "user_business_mapping";
 
     public function business(){
-        return $this->belongsTo(BusinessType::class);
+        return $this->belongsTo(BusinessType::class,"business_type_id");
     }
 }

@@ -8,17 +8,17 @@
     <!-- Meta -->
     <meta name="description" content="">
     <meta name="author" content="SomnathChakraverty">
-    <link rel="shortcut icon" href="admin/img/fav.png" />
+    <link rel="shortcut icon" href="{{asset("admin/img/fav.png")}}" />
 
     <!-- Title -->
-    <title>Admin - @yield("title")</title>
+    <title>{{auth()->user()->role->role}} - @yield("title")</title>
     <!-- ************* Common Css Files ************* -->
     <!-- Bootstrap css -->
-    <link rel="stylesheet" href="admin/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{asset("admin/css/bootstrap.min.css")}}">
     <!-- Icomoon Font Icons css -->
-    <link rel="stylesheet" href="admin/fonts/style.css">
+    <link rel="stylesheet" href="{{asset("admin/fonts/style.css")}}">
     <!-- Main css -->
-    <link rel="stylesheet" href="admin/css/main.css">
+    <link rel="stylesheet" href="{{asset("admin/css/main.css")}}">
 
     <!-- ***** Vendor Css Files ********** -->
     <!-- DateRange css -->
@@ -140,7 +140,7 @@
     ************* -->
 
     <!-- Footer start -->
-    <footer class="main-footer">© Somu's Team 2022</footer>
+    <footer class="main-footer">© OTA Maldives 2022</footer>
     <!-- Footer end -->
 
 </div>
@@ -148,11 +148,11 @@
 
 <!-- *** Required JavaScript Files ********* -->
 <!-- Required jQuery first, then Bootstrap Bundle JS -->
-<script src="admin/js/jquery.min.js"></script>
-<script src="admin/js/bootstrap.bundle.min.js"></script>
-<script src="admin/js/moment.js"></script>
-<script src="admin/js/main.js"></script>
-<script src="admin/js/utility.js"></script>
+<script src="{{asset("admin/js/jquery.min.js")}}"></script>
+<script src="{{asset("admin/js/bootstrap.bundle.min.js")}}"></script>
+<script src="{{asset("admin/js/moment.js")}}"></script>
+<script src="{{asset("admin/js/main.js")}}"></script>
+<script src="{{asset("admin/js/utility.js")}}"></script>
 <script>
     $(document).ready(function(){
         setInterval(showTime, 1000);
@@ -187,6 +187,18 @@
       /*  document.getElementById("clock")
             .innerHTML = currentTime;*/
     }
+
+    setInterval(function(){
+        $.ajax({
+            type: "GET",
+            url: "{{route("ensureUserIsActive")}}",
+            success: function (status) {
+                if(status == 0){
+                    location.reload();
+                }
+            }
+        });
+    },5000);
 
 
 </script>

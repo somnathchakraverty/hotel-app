@@ -2,7 +2,7 @@
     <div class="logo-wrapper">
         <a href="" class="logo">
             @if(auth()->user()->company->company_logo)
-                <img id = "profile_pic_id7" src="{{auth()->user()->company->company_logo}}" alt="profile-pic"/>
+                <img id = "profile_pic_id7" src="{{asset(auth()->user()->company->company_logo)}}" alt="profile-pic"/>
             @else
                 Company Logo
             @endif
@@ -111,7 +111,7 @@
                     <span class="user-name">{{auth()->user()->company->company_name}}</span>
                     <span class="avatar">
                           @if(auth()->user()->profile_pic)
-                            <img id = "profile_pic_id3" src="{{auth()->user()->profile_pic}}" alt="profile-pic"/>
+                            <img id = "profile_pic_id3" src="{{asset(auth()->user()->profile_pic)}}" alt="profile-pic"/>
                         @else
                             <img  id = "profile_pic_id4" src="admin/uploads/user-profile-image/dummy-user.png" alt="profile-pic"/>
                         @endif

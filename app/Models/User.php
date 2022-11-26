@@ -49,11 +49,17 @@ class User extends Authenticatable
 
     public function businessTypes()
     {
-        return $this->hasMany(UserBusinessMapping::class);
+        return $this->hasMany(UserBusinessMapping::class)->where(["status"=>1]);
     }
 
     public function role()
     {
         return $this->belongsTo(Role::class);
+    }
+
+    public function getChannelList()
+    {
+        return User::where("role_id", 3)->paginate(15)    ;
+
     }
 }

@@ -36,7 +36,7 @@ Route::post('login', [AuthController::class, "login"])->name("login");
 Route::get('register', [AuthController::class, "register"])->name("register");
 Route::post('register', [AuthController::class, "createUser"])->name("register");
 Route::get('invalid-access', [\App\Http\Controllers\admin\ErrorController::class, "invalidAccess"])->name("invalid-access");
-
+Route::get('ensureUserIsActive', [UserController::class, "ensureUserIsActive"])->name("ensureUserIsActive");
 
 Route::group(["middleware" => ['auth', "ensureAccountIsVerified"]], function () {
     Route::get('channel-manager-dashboard', [DashboardController::class, "index"])->name("channel-manager-dashboard");
@@ -44,5 +44,7 @@ Route::group(["middleware" => ['auth', "ensureAccountIsVerified"]], function () 
     Route::post('update-company-profile', [CompanyProfileController::class, "updateCompanyProfile"])->name("update-company-profile");
     Route::group(["middleware" => ['auth', "ensureAccountIsAdmin"]], function () {
         Route::get('manage-channel', [UserController::class, "channelList"])->name("manage-channel");
+        Route::post('change-user-account-status', [UserController::class, "updateUserStatus"])->name("change-user-account-status");
+        Route::get('edit-channel-details/{ChannelId}', [UserController::class, "editChannelDetails"])->name("edit-channel-details");
     });
 });
