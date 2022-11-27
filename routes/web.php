@@ -62,6 +62,7 @@ Route::group(["middleware" => ['auth', "ensureAccountIsVerified"]], function () 
         Route::get('edit-channel-details/{ChannelId}', [UserController::class, "editChannelDetails"])->name("edit-channel-details");
 
         Route::post('change-user-account-status', [UserController::class, "updateUserStatus"])->name("change-user-account-status");
+        Route::post('update-channel-details', [UserController::class, "updateChannelDetails"])->name("update-channel-details");
 
     });
 });

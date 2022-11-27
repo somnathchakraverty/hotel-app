@@ -6,6 +6,7 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\DB;
 use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
@@ -60,6 +61,14 @@ class User extends Authenticatable
     public function getChannelList()
     {
         return User::where("role_id", 3)->paginate(15)    ;
+    }
 
+    public static function getCompleteUserDetail($userId){
+        $userDetails = DB::table("users as u")
+            ->join("company_profile as cp", "u.id", "=", "cp.user_id")
+            ->where("u.id",$userId)
+            ->select('company_name', 'company_address', 'role_id','contact_number', 'alt_contact_number','company_logo', 'website_url',"u.name","u.email","u.profile_pic","account_status","u.id as user_id")
+            ->get()->toArray();
+        return $userDetails = $userDetails[0];
     }
 }

@@ -1,123 +1,224 @@
 @extends("layouts.admin.master")
 @section("title",$title)
 @section("vendor-css")
-    <link rel="stylesheet" href="{{asset("admin/vendor/daterange/daterange.css")}}"/>
-    <link rel="stylesheet" href="{{asset("admin/vendor/wizard/jquery.steps.css")}}"/>
+    <link rel="stylesheet" href="admin/vendor/daterange/daterange.css"/>
 @endsection
 @section("breadcumbs",$title)
+
+
 
 @section("content-wrapper")
     <!-- Row start -->
     <div class="row gutters">
-        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-            <div id="example-basic">
-                <h3>First step</h3>
-                <section>
-                    <p>Try the keyboard navigation by clicking arrow left or right!</p>
-                </section>
-                <h3>Second step</h3>
-                <section>
-                    <p>Wonderful transition effects.</p>
-                </section>
-                <h3>Third step</h3>
-                <section>
-                    <p>The next and previous buttons help you to navigate through your content.</p>
-                </section>
+        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-12">
+            <div class="card h-100">
+                <div class="card-body">
+                    <div class="account-settings">
+                        <div class="user-profile">
+                            <div class="user-avatar">
+
+                                @if($user->company_logo)
+                                    <img id = "profile_pic_id1" src="{{asset($user->company_logo)}}" alt="profile-pic"/>
+                                @else
+                                    <img id = "profile_pic_id" src="{{asset("admin/uploads/user-profile-image/dummy-user.png")}}" alt="profile-pic"/>
+                                @endif
+                            </div>
+                            <h5 class="user-name">{{$user->company_name}}</h5>
+                            <h6 class="user-email">{{$user->email}}</h6>
+                        </div>
+                        <div class="setting-links">
+                            <a href="javascript:void(0);" onclick="showTab('company_profile_tab');">
+                                <i class="icon-chat"></i>
+                                <span id="company_profile_tab_txt" class="tabclass"> Company Profile</span>
+                            </a>
+                            <a href="javascript:void(0);" onclick="showTab('contact_info_tab');" >
+                                <i class="icon-date_range"></i>
+                                <span id="contact_info_tab_txt" class="tabclass">  Contact Info</span>
+                            </a>
+                            <a href="javascript:void(0);" onclick="showTab('company_logo_tab');">
+                                <i class="icon-file-text"></i>
+                                <span id="company_logo_tab_txt" class="tabclass"> Company Logo </span>
+                            </a>
+                            <a href="javascript:void(0);" onclick="showTab('user_logo_tab');">
+                                <i class="icon-file-text"></i>
+                                <span id="user_logo_tab_txt"class="tabclass"> User Logo </span>
+                            </a>
+
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
-    <!-- Row end -->
 
-    <!-- Row start -->
-    <div class="row gutters">
-        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-            <div id="example-form">
-                <h3>Personal Information</h3>
-                <section>
-                    <div class="row gutters">
-                        <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12">
-                            <div class="form-group">
-                                <label for="fullName">Full Name</label>
-                                <input type="text" class="form-control" id="fullName" placeholder="Enter full name">
+        <div class="col-xl-9 col-lg-9 col-md-9 col-sm-12 col-12 profiletab" id="company_profile_tab" >
+            <div class="card h-100">
+                <div class="card-header">
+                    <div class="card-title">Company Profile</div>
+                </div>
+                <form action={{route("update-channel-details")}} method="post" id="update-company-profile">
+                    @csrf
+                    <input type="hidden" name="userId" value="{{\Illuminate\Support\Facades\Crypt::encryptString($user->user_id)}}" >
+                    <div class="card-body">
+                        <div class="row gutters">
+
+                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                <div class="form-group">
+                                    <label for="fullName">Company Name</label>
+                                    <input maxlength="250" required type="text" class="form-control"  name="company_name" value="{{$user->company_name}}" placeholder="Company Name">
+                                </div>
+                                <div class="form-group">
+                                    <label for="website">Website URL</label>
+                                    <input maxlength="45" required type="url" class="form-control"  name="website_url" value="{{$user->website_url}}" placeholder="Website url">
+                                </div>
+
                             </div>
-                        </div>
-                        <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12">
-                            <div class="form-group">
-                                <label for="eMail">Email</label>
-                                <input type="email" class="form-control" id="eMail" placeholder="Enter email ID">
+                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                <div class="form-group">
+                                    <label for="eMail">Email</label>
+                                    <input  type="email" class="form-control" value="{{$user->email}}"  id="eMail"  disabled>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="eMail">Business Types</label>
+                                    <div>
+                                        @foreach($businessTypes as $type)
+                                            <div class="custom-control  custom-checkbox custom-control-inline">
+                                                <input class="form-check-input" @if($type->business_opted > 0) checked="checked" @endif
+                                                type="checkbox" value="{{$type->id}}"  name="businessType[]" >
+                                                <label class="form-check-label"  >
+                                                    {{$type->business_name}}
+                                                </label>
+                                            </div>
+                                        @endforeach
+                                    </div>
+
+                                </div>
+
                             </div>
-                        </div>
-                        <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12">
-                            <div class="form-group">
-                                <label for="phone">Phone</label>
-                                <input type="text" class="form-control" id="phone" placeholder="Enter phone number">
-                            </div>
-                        </div>
-                    </div>
-                </section>
-                <h3>Billing Information</h3>
-                <section>
-                    <div class="row gutters">
-                        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col-12">
-                            <div class="form-group">
-                                <label for="addrEss">Address</label>
-                                <input type="text" class="form-control" id="addrEss" placeholder="Flat No">
-                            </div>
-                        </div>
-                        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col-12">
-                            <div class="form-group">
-                                <label for="ciTy">City</label>
-                                <input type="text" class="form-control" id="ciTy" placeholder="City">
-                            </div>
-                        </div>
-                        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col-12">
-                            <div class="form-group">
-                                <label for="sTate">State</label>
-                                <input type="text" class="form-control" id="sTate" placeholder="State">
-                            </div>
-                        </div>
-                        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col-12">
-                            <div class="form-group">
-                                <label for="counTry">Country</label>
-                                <input type="text" class="form-control" id="counTry" placeholder="Country">
+                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                <div class="text-right">
+                                    <input type="submit"  class="btn btn-success"  value="Update Company Profile">
+                                </div>
                             </div>
                         </div>
                     </div>
-                </section>
-                <h3>Payment Details</h3>
-                <section>
-                    <div class="row gutters">
-                        <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12">
-                            <div class="form-group">
-                                <label for="cardNum">Card Number</label>
-                                <input type="text" class="form-control" id="cardNum" placeholder="Enter Card Number">
-                            </div>
-                        </div>
-                        <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12">
-                            <div class="form-group">
-                                <label for="nameOnCard">Name On Card</label>
-                                <input type="text" class="form-control" id="nameOnCard" placeholder="Name On Card">
-                            </div>
-                        </div>
-                        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col-12">
-                            <div class="form-group">
-                                <label for="expDate">Expiry Date</label>
-                                <input type="text" class="form-control" id="expDate" placeholder="Card Expiry Date">
-                            </div>
-                        </div>
-                        <div class="col-xl-1 col-lg-1 col-md-1 col-sm-1 col-12">
-                            <div class="form-group">
-                                <label for="cvv">CVV</label>
-                                <input type="number" class="form-control" id="cvv" placeholder="CVV">
-                            </div>
-                        </div>
-                    </div>
-                </section>
+                </form>
             </div>
         </div>
+        <div class="col-xl-9 col-lg-9 col-md-9 col-sm-12 col-12 profiletab" style="display: none;" id="contact_info_tab" >
+            <div class="card h-100">
+                <div class="card-header">
+                    <div class="card-title">Contact Info</div>
+                </div>
+                <form action={{route("update-channel-details")}} method="post" id="update-contact-info">
+                    @csrf
+                    @method("post")
+                    <input type="hidden" name="userId" value="{{\Illuminate\Support\Facades\Crypt::encryptString($user->user_id)}}" >
+
+                    <div class="card-body">
+                        <div class="row gutters">
+
+                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                <div class="form-group">
+                                    <label for="addRess">Contact Person Name</label>
+                                    <input required  maxlength="100" type="text" class="form-control" name="contact_person_name" value="{{$user->name}}" placeholder="Enter Contact Person Name">
+
+                                </div>
+                                <div class="form-group">
+                                    <label for="fullName">Contact Number</label>
+                                    <input required maxlength="15" type="text" class="form-control"  name="contact_number" value="{{$user->contact_number}}" placeholder="Contact Number">
+                                </div>
+
+
+                            </div>
+                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                <div class="form-group">
+                                    <label for="fullName">Alternate Contact Number</label>
+                                    <input type="text" maxlength="15" class="form-control"  name="alt_contact_number" value="{{$user->alt_contact_number}}" placeholder="Alt Contact Number">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="website">Address</label>
+                                    <textarea required class="form-control" name="company_address"  placeholder="Enter Company Address">{{$user->company_address}}</textarea>
+                                </div>
+
+                            </div>
+                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                <div class="text-right">
+                                    <input type="submit"  class="btn btn-success"  value="Update Contact Info">
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="col-xl-9 col-lg-9 col-md-9 col-sm-12 col-12 profiletab" style="display: none;" id="company_logo_tab" >
+            <div class="card h-100">
+                <div class="card-header">
+                    <div class="card-title">Company Logo</div>
+                </div>
+                <form action={{route("update-channel-details")}} method="post" id="update-company-logo" enctype="multipart/form-data" >
+                    @csrf
+                    <input type="hidden" name="userId" value="{{\Illuminate\Support\Facades\Crypt::encryptString($user->user_id)}}" >
+
+                    <div class="card-body">
+                        <div class="row gutters">
+
+                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                <div class="form-group">
+                                    <label for="fullName">Company Logo</label>
+                                    <input type="file" accept=".jpg,.jpeg,.png"  onchange="readURL(this,'company');" required name="company_logo">
+                                </div>
+
+                            </div>
+
+                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                <div class="text-right">
+                                    <input type="submit"  class="btn btn-success"  value="Upload Company Logo">
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="col-xl-9 col-lg-9 col-md-9 col-sm-12 col-12 profiletab" style="display: none;" id="user_logo_tab" >
+            <div class="card h-100">
+                <div class="card-header">
+                    <div class="card-title">User Logo</div>
+                </div>
+                <form action={{route("update-channel-details")}} method="post" id="update-user-logo" enctype="multipart/form-data" >
+                    @csrf
+                    <input type="hidden" name="userId" value="{{\Illuminate\Support\Facades\Crypt::encryptString($user->user_id)}}" >
+
+                    <div class="card-body">
+                        <div class="row gutters">
+
+                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                <div class="form-group">
+                                    <label for="fullName">User Profile Pic</label>
+                                    <input type="file" accept=".jpg,.jpeg,.png"  onchange="readURL(this,'user');" required name="profile_pic">
+                                </div>
+
+                            </div>
+
+                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                <div class="text-right">
+                                    <input type="submit"  class="btn btn-success"  value="Upload Profile Pic">
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
     </div>
     <!-- Row end -->
-
 @endsection
 
 
@@ -125,22 +226,127 @@
 <!-- dashboard vendor js -->
 
 @section("vendor-js")
+    <script>
+
+        function showTab(id) {
+            $(".profiletab").hide();
+            $(".tabclass").css("color","#000000");
+            $(".tabclass").css("font-weight","");
+            $("#" + id).show();
+            $("#" + id+"_txt").css("color","#28a745");
+            $("#" + id+"_txt").css("font-weight","bold");
+        }
+
+        $("#update-company-profile").submit(function (e) {
+            showLoader();
+            e.preventDefault(); // avoid to execute the actual submit of the form.
+            var form = $(this);
+            var actionUrl = form.attr('action');
+            sendData(form, actionUrl);
+        });
+        $("#update-contact-info").submit(function (e) {
+            showLoader();
+            e.preventDefault(); // avoid to execute the actual submit of the form.
+            var form = $(this);
+            var actionUrl = form.attr('action');
+            sendData(form, actionUrl);
+        });
+
+        $("#update-company-logo").submit(function (e) {
+            showLoader();
+            e.preventDefault(); // avoid to execute the actual submit of the form.
+            var form = $(this);
+            var actionUrl = form.attr('action');
+            $.ajax({
+                type: "POST",
+                url: actionUrl,
+                data:new FormData(this),
+                dataType:'JSON',
+                contentType: false,
+                cache: false,
+                processData: false,
+                success: function (data) {
+                    if (data.status == true) {
+                        displayAlert("success", data.message);
+                    } else {
+                        displayAlert("error", data.message);
+                    }
+                    hideLoader();
+                }
+            });
+        });
+        $("#update-user-logo").submit(function (e) {
+            showLoader();
+            e.preventDefault(); // avoid to execute the actual submit of the form.
+            var form = $(this);
+            var actionUrl = form.attr('action');
+            $.ajax({
+                type: "POST",
+                url: actionUrl,
+                data:new FormData(this),
+                dataType:'JSON',
+                contentType: false,
+                cache: false,
+                processData: false,
+                success: function (data) {
+                    if (data.status == true) {
+                        displayAlert("success", data.message);
+                    } else {
+                        displayAlert("error", data.message);
+                    }
+                    hideLoader();
+                }
+            });
+        });
+
+        function sendData(form, actionUrl) {
+            $.ajax({
+                type: "POST",
+                url: actionUrl,
+                dataType: "json",
+                data: form.serialize(),
+                success: function (data) {
+                    if (data.status == true) {
+                        displayAlert("success", data.message);
+                    } else {
+                        displayAlert("error", data.message);
+                    }
+                    hideLoader();
+                }
+            });
+
+        }
+        function readURL(input,logoType) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    if(logoType == "company") {
+                        $('#profile_pic_id').attr('src', e.target.result);
+                        $('#profile_pic_id1').attr('src', e.target.result);
+
+                    }
+                    if(logoType == "user") {
+                        if ("{{$user->role_id}}" == 3) {
+                            $('#profile_pic_id2').attr('src', e.target.result);
+
+                            $('#profile_pic_id4').attr('src', e.target.result);
+
+                            $('#profile_pic_id6').attr('src', e.target.result);
+                        }
+                    }
+                };
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+    </script>
     <!-- Slimscroll JS -->
-   <script src="{{asset("admin/vendor/slimscroll/slimscroll.min.js")}}"></script>
-   <script src="{{asset("admin/vendor/slimscroll/custom-scrollbar.js")}}"></script>
+    <script src="admin/vendor/slimscroll/slimscroll.min.js"></script>
+    <script src="admin/vendor/slimscroll/custom-scrollbar.js"></script>
 
     <!-- Daterange -->
-   <script src="{{asset("admin/vendor/daterange/daterange.js")}}"></script>
-   <script src="{{asset("admin/vendor/daterange/custom-daterange.js")}}"></script>
-
-    <!-- Rating JS -->
-    {{--<script src="admin/vendor/rating/raty.js"></script>--}}
-   <script src="{{asset("admin/vendor/rating/raty-custom.js")}}"></script>
-   <script src="{{asset("admin/vendor/wizard/jquery.steps.min.js")}}"></script>
-   <script src="{{asset("admin/vendor/wizard/jquery.steps.custom.js")}}"></script>
-   <script src="{{asset("admin/js/main.js")}}"></script>
-
-    <!-- jQcloud Keywords -->
-
+    <script src="admin/vendor/daterange/daterange.js"></script>
+    <script src="admin/vendor/daterange/custom-daterange.js"></script>
 
 @endsection

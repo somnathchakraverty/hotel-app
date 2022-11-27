@@ -42,7 +42,7 @@
 
                                 <td> <img  src="{{$list->company->company_logo}}"  height="100px;" alt=""/>        </td>
                                 <td><?= $list->name ?></td>
-                                <td><?= $list->name ?></td>
+                                <td><?= $list->company->company_name ?></td>
                                 <td><?= $list->email ?></td>
                                 <td><?php
                                     $businessTypesArray = [];
@@ -131,7 +131,7 @@
     <script src="admin/vendor/jvectormap/usa.js"></script>
     <script src="admin/vendor/jvectormap/custom/map-usa3.js"></script>
     <script>
-        function updateUserAccountStatus(userId, status) {
+        function updateUserAccountStatus(userId, userStatus) {
             var span = userId + "_span";
             var spanDiv = userId + "_span_div";
             var btnDiv = userId + "_btn_div";
@@ -150,12 +150,14 @@
                     $("#" + spanDiv).hide();
                     $("#" + btnDiv).hide();
                     if (data.status) {
-                        if(status == 1){
+                        if(userStatus == 1){
+                            console.log("active");
                             $("#" + btnDeAct).show();
-                            $("#"+"_span").text("Active");
-                            $("#"+"_span").removeClass("badge-danger");
-                            $("#"+"_span").addClass("badge-success");
-                        }else if(status == 0){
+                            $("#"+span).text("Active");
+                            $("#"+span).removeClass("badge-danger");
+                            $("#"+span).addClass("badge-success");
+                        }else if(userStatus == 0){
+                            console.log("Inactive");
                             $("#" + btnAct).show();
                             $("#"+span).text("InActive");
                             $("#"+span).addClass("badge-danger");

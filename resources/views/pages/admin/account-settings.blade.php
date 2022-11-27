@@ -3,7 +3,7 @@
 @section("vendor-css")
     <link rel="stylesheet" href="admin/vendor/daterange/daterange.css"/>
 @endsection
-@section("breadcumbs","Account Settings")
+@section("breadcumbs",$title)
 
 
 
