@@ -5,6 +5,12 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\admin\DashboardController;
 use App\Http\Controllers\admin\UserController;
 use App\Http\Controllers\admin\CompanyProfileController;
+use App\Http\Controllers\admin\CountryMasterController;
+use App\Http\Controllers\admin\StateMasterController;
+use App\Http\Controllers\admin\CityMasterController;
+use App\Http\Controllers\admin\AmenitiesMasterController;
+use App\Http\Controllers\admin\HotelCategoryController;
+use App\Http\Controllers\admin\RoomCategoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -44,7 +50,18 @@ Route::group(["middleware" => ['auth', "ensureAccountIsVerified"]], function () 
     Route::post('update-company-profile', [CompanyProfileController::class, "updateCompanyProfile"])->name("update-company-profile");
     Route::group(["middleware" => ['auth', "ensureAccountIsAdmin"]], function () {
         Route::get('manage-channel', [UserController::class, "channelList"])->name("manage-channel");
-        Route::post('change-user-account-status', [UserController::class, "updateUserStatus"])->name("change-user-account-status");
+
+        Route::get('country-master', [CountryMasterController::class, "getCountryList"])->name("country-master");
+        Route::get('state-master', [StateMasterController::class, "getStateList"])->name("state-master");
+        Route::get('city-master', [CityMasterController::class, "getCityList"])->name("city-master");
+
+        Route::get('amenities', [AmenitiesMasterController::class, "getAmenities"])->name("amenities");
+        Route::get('hotel-categories', [HotelCategoryController::class, "getHotelCategoryList"])->name("hotel-categories");
+        Route::get('room-categories', [RoomCategoryController::class, "getRoomCategoryList"])->name("hotel-categories");
+
         Route::get('edit-channel-details/{ChannelId}', [UserController::class, "editChannelDetails"])->name("edit-channel-details");
+
+        Route::post('change-user-account-status', [UserController::class, "updateUserStatus"])->name("change-user-account-status");
+
     });
 });

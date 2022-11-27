@@ -59,7 +59,8 @@
                                     ?></td>
                                 <td>  {{ date('jS M, Y',strtotime($list->created_at)) }} </td>
                                 <td><span id="{{$userId}}_span"
-                                    <?= $list->account_status == 1 ? 'class="badge badge-success"> Active' : 'class="badge badge-danger"> InActive' ?></span>
+                                    <?= $list->account_status == 1 ? 'class="badge badge-success"> Active' : 'class="badge badge-danger"> InActive' ?>
+                                    </span>
                                     <div class="spinner-border spinner-border-sm" id="{{$userId}}_span_div" style="display: none;">
                                         <span class="sr-only">Loading...</span>
                                     </div>

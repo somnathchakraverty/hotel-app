@@ -116,13 +116,13 @@
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="appsDropdown">
                             <li>
-                                <a class="dropdown-item" href="">Country Master</a>
+                                <a class="dropdown-item" href="{{url("country-master")}}">Country Master</a>
                             </li>
                             <li>
-                                <a class="dropdown-item" href="">State Master</a>
+                                <a class="dropdown-item" href="{{url("state-master")}}">State Master</a>
                             </li>
                             <li>
-                                <a class="dropdown-item" href="">City Master</a>
+                                <a class="dropdown-item" href="{{url("city-master")}}">City Master</a>
                             </li>
 
                         </ul>
@@ -135,13 +135,13 @@
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="appsDropdown">
                             <li>
-                                <a class="dropdown-item" href="">Amenities Master</a>
+                                <a class="dropdown-item" href="{{url("amenities")}}">Amenities</a>
                             </li>
                             <li>
-                                <a class="dropdown-item" href="">Hotel Types Master</a>
+                                <a class="dropdown-item" href="{{url("hotel-categories")}}">Hotel Categories</a>
                             </li>
                             <li>
-                                <a class="dropdown-item" href="">Room Type Master</a>
+                                <a class="dropdown-item" href="{{url("room-categories")}}">Room Categories</a>
                             </li>
                         </ul>
                     </li>
