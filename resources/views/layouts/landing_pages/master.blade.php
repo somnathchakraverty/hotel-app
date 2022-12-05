@@ -2,8 +2,7 @@
 <html lang="en" dir="ltr">
 
 
-<!-- Mirrored from shreethemes.in/landrick/landing/index-hotel.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 30 Nov 2022 18:00:10 GMT -->
-<head>
+ <head>
     <meta charset="utf-8" />
     <title>OTA Maldives | @yield("title")</title>
 
@@ -172,7 +171,7 @@
                                                 <label class="form-check-label" for="flexCheckDefault">Remember me</label>
                                             </div>
                                         </div>
-                                        <p class="forgot-pass mb-0"><a href="auth-cover-re-password.html" class="text-dark fw-bold">Forgot password ?</a></p>
+                                        <p class="forgot-pass mb-0"><a href="" class="text-dark fw-bold">Forgot password ?</a></p>
                                     </div>
                                 </div><!--end col-->
 
@@ -195,14 +194,14 @@
 
     <div class="offcanvas-footer p-4 border-top text-center">
         <ul class="list-unstyled social-icon social mb-0">
-            <li class="list-inline-item mb-0"><a href="https://1.envato.market/landrick" target="_blank" class="rounded"><i class="uil uil-shopping-cart align-middle" title="Buy Now"></i></a></li>
-            <li class="list-inline-item mb-0"><a href="https://dribbble.com/shreethemes" target="_blank" class="rounded"><i class="uil uil-dribbble align-middle" title="dribbble"></i></a></li>
-            <li class="list-inline-item mb-0"><a href="https://www.behance.net/shreethemes" target="_blank" class="rounded"><i class="uil uil-behance align-middle" title="behance"></i></a></li>
-            <li class="list-inline-item mb-0"><a href="https://www.facebook.com/shreethemes" target="_blank" class="rounded"><i class="uil uil-facebook-f align-middle" title="facebook"></i></a></li>
-            <li class="list-inline-item mb-0"><a href="https://www.instagram.com/shreethemes/" target="_blank" class="rounded"><i class="uil uil-instagram align-middle" title="instagram"></i></a></li>
-            <li class="list-inline-item mb-0"><a href="https://twitter.com/shreethemes" target="_blank" class="rounded"><i class="uil uil-twitter align-middle" title="twitter"></i></a></li>
-            <li class="list-inline-item mb-0"><a href="mailto:support@shreethemes.in" class="rounded"><i class="uil uil-envelope align-middle" title="email"></i></a></li>
-            <li class="list-inline-item mb-0"><a href="https://shreethemes.in/" target="_blank" class="rounded"><i class="uil uil-globe align-middle" title="website"></i></a></li>
+            <li class="list-inline-item mb-0"><a href="" target="_blank" class="rounded"><i class="uil uil-shopping-cart align-middle" title="Buy Now"></i></a></li>
+            <li class="list-inline-item mb-0"><a href="" target="_blank" class="rounded"><i class="uil uil-dribbble align-middle" title="dribbble"></i></a></li>
+            <li class="list-inline-item mb-0"><a href="" target="_blank" class="rounded"><i class="uil uil-behance align-middle" title="behance"></i></a></li>
+            <li class="list-inline-item mb-0"><a href="" target="_blank" class="rounded"><i class="uil uil-facebook-f align-middle" title="facebook"></i></a></li>
+            <li class="list-inline-item mb-0"><a href="" target="_blank" class="rounded"><i class="uil uil-instagram align-middle" title="instagram"></i></a></li>
+            <li class="list-inline-item mb-0"><a href="" target="_blank" class="rounded"><i class="uil uil-twitter align-middle" title="twitter"></i></a></li>
+            <li class="list-inline-item mb-0"><a href="" class="rounded"><i class="uil uil-envelope align-middle" title="email"></i></a></li>
+            <li class="list-inline-item mb-0"><a href="" target="_blank" class="rounded"><i class="uil uil-globe align-middle" title="website"></i></a></li>
         </ul><!--end icon-->
     </div>
 </div>
@@ -245,7 +244,7 @@
                         <li class="d-grid"><a href="javascript:void(0)" class="dark-ltr-version t-ltr-dark" onclick="setTheme('style-dark')"><img src="{{asset("landing_pages/assets/images/demos/dark.png")}}" class="img-fluid rounded-md shadow-md d-block mx-auto" style="width: 240px;" alt=""><span class="text-dark fw-medium mt-3 d-block">LTR Version</span></a></li>
                         <li class="d-grid"><a href="javascript:void(0)" class="dark-version t-dark mt-4" onclick="setTheme('style-dark')"><img src="{{asset("landing_pages/assets/images/demos/dark.png")}}" class="img-fluid rounded-md shadow-md d-block mx-auto" style="width: 240px;" alt=""><span class="text-dark fw-medium mt-3 d-block">Dark Version</span></a></li>
                         <li class="d-grid"><a href="javascript:void(0)" class="light-version t-light mt-4" onclick="setTheme('style')"><img src="{{asset("landing_pages/assets/images/demos/ltr.png")}}" class="img-fluid rounded-md shadow-md d-block mx-auto" style="width: 240px;" alt=""><span class="text-dark fw-medium mt-3 d-block">Light Version</span></a></li>
-                        <li class="d-grid"><a href="https://shreethemes.in/landrick/dashboard/index.html" target="_blank" class="mt-4"><img src="{{asset("landing_pages/assets/images/demos/admin.png")}}" class="img-fluid rounded-md shadow-md d-block mx-auto" style="width: 240px;" alt=""><span class="text-dark fw-medium mt-3 d-block">Admin Dashboard</span></a></li>
+                        <li class="d-grid"><a href="" target="_blank" class="mt-4"><img src="{{asset("landing_pages/assets/images/demos/admin.png")}}" class="img-fluid rounded-md shadow-md d-block mx-auto" style="width: 240px;" alt=""><span class="text-dark fw-medium mt-3 d-block">Admin Dashboard</span></a></li>
                     </ul>
                 </div>
             </div>
@@ -287,5 +286,4 @@
         <!--Note: All important javascript like page loader, menu, sticky menu, menu-toggler, one page menu etc. -->
 </body>
 
-<!-- Mirrored from shreethemes.in/landrick/landing/index-hotel.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 30 Nov 2022 18:03:30 GMT -->
-</html>
+ </html>

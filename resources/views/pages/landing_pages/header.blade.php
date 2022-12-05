@@ -29,6 +29,15 @@
                      Sign in
                 </a>
             </li>
+            <li class="list-inline-item mb-0">
+                 <a href="javascript:void(0)"  style="
+    height: 40px;
+    padding-left: 25px;
+    margin-left: 10px;
+" class="btn btn-primary" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">
+                  Join Us
+                </a>
+            </li>
 
 
         </ul>
