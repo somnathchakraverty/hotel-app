@@ -35,7 +35,9 @@ Route::any('adminer', '\Aranyasen\LaravelAdminer\AdminerAutologinController@inde
 //Route::any('adminer', '\Aranyasen\LaravelAdminer\AdminerController@index');
 
 
-Route::get('/', [AuthController::class, "index"])->name("/");
+Route::get('/', function(){
+    return view("pages.landing_pages.landing-page-index")->with(["title" => "Join Us"]);
+})->name("/");
 Route::get('login', [AuthController::class, "index"])->name("login");
 Route::get('logout', [AuthController::class, "logout"])->name("logout");
 Route::post('login', [AuthController::class, "login"])->name("login");
