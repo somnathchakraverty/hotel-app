@@ -38,6 +38,13 @@ Route::any('adminer', '\Aranyasen\LaravelAdminer\AdminerAutologinController@inde
 Route::get('/', function(){
     return view("pages.landing_pages.landing-page-index")->with(["title" => "Join Us"]);
 })->name("/");
+Route::get('join-us', [AuthController::class, "joinUs"])->name("join-us");
+Route::post('create-account', [AuthController::class, "createAccount"])->name("create-account");
+Route::get('create-account', [AuthController::class, "createAccount"])->name("create-account");
+Route::get('registration-success/{email}', [AuthController::class, "registrationSuccess"])->name("registration-success");
+Route::get('email-verification/{email}', [AuthController::class, "verifyEmail"])->name("email-verification");
+
+
 Route::get('login', [AuthController::class, "index"])->name("login");
 Route::get('logout', [AuthController::class, "logout"])->name("logout");
 Route::post('login', [AuthController::class, "login"])->name("login");
